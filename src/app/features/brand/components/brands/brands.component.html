@@ -1,0 +1,7 @@
+<div class="container">
+  <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+    <mat-card *cdkVirtualFor="let brand of brands$" class="brand-card">
+      {{ brand.name }}
+    </mat-card>
+  </cdk-virtual-scroll-viewport>
+</div>
