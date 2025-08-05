@@ -1,11 +1,13 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { Component, inject } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { Observable, combineLatest, map, startWith } from 'rxjs';
 
 import { CarBrand } from '../../interfaces/car-brand';
 import { CommonModule } from '@angular/common';
 import { MatCard } from '@angular/material/card';
-import { Observable } from 'rxjs';
+import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
 import { selectAllCarBrands } from '../../../store/car-brand.selectors';
 
@@ -19,15 +21,31 @@ import { selectAllCarBrands } from '../../../store/car-brand.selectors';
     MatCard,
     CdkVirtualScrollViewport,
     ScrollingModule,
+    MatLabel,
+    MatFormField,
+    MatInputModule,
   ],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css',
 })
 export class BrandsComponent {
   private store = inject(Store);
-  brands$: Observable<CarBrand[]> = this.store.select(selectAllCarBrands);
+  allBrands$: Observable<CarBrand[]> = this.store.select(selectAllCarBrands);
 
-  // constructor(private brandService: BrandService) {
-  //   this.brands$ = this.brandService.getAllMakes();
-  // }
+  searchControl = new FormControl('');
+
+  brands$ = combineLatest([
+    this.allBrands$,
+    this.searchControl.valueChanges.pipe(startWith('')),
+  ]).pipe(
+    map(([brands, search]) =>
+      brands.filter(brand => {
+        if (search === null || search === undefined || search.trim() === '') {
+          return true;
+        }
+
+        return brand.name.toLowerCase().includes(search.toLowerCase());
+      }),
+    ),
+  );
 }

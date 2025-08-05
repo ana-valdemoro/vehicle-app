@@ -1,4 +1,11 @@
 <div class="container">
+  <h2>Brand list</h2>
+
+  <mat-form-field style="width: 100%" appearance="outline">
+    <mat-label>Search brands</mat-label>
+    <input matInput [formControl]="searchControl" placeholder="Type to search..." />
+  </mat-form-field>
+
   <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
     <mat-card *cdkVirtualFor="let brand of brands$" class="brand-card">
       {{ brand.name }}
