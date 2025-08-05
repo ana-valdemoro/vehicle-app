@@ -14,11 +14,13 @@ export class BrandService {
 
   getAllMakes(): Observable<CarBrand[]> {
     const url = `${environment.baseUrl}/GetAllMakes?format=json`;
-    return this.http.get<MakeList>(url).pipe(map(
-      (response) => response.Results.map((make) => ({
-        id: make.Make_ID,
-        name: make.Make_Name,
-      }))
-    ));
+    return this.http.get<MakeList>(url).pipe(
+      map(response =>
+        response.Results.map(make => ({
+          id: make.Make_ID,
+          name: make.Make_Name,
+        })),
+      ),
+    );
   }
 }

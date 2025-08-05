@@ -1,12 +1,13 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { BrandService } from '../../services/brand/brand.service';
 import { CarBrand } from '../../interfaces/car-brand';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { MatCard } from '@angular/material/card';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectAllCarBrands } from '../../../store/car-brand.selectors';
 
 @Component({
   selector: 'app-brands',
@@ -23,9 +24,10 @@ import { Observable } from 'rxjs';
   styleUrl: './brands.component.css',
 })
 export class BrandsComponent {
-  brands$: Observable<CarBrand[]>;
+  private store = inject(Store);
+  brands$: Observable<CarBrand[]> = this.store.select(selectAllCarBrands);
 
-  constructor(private brandService: BrandService) {
-    this.brands$ = this.brandService.getAllMakes();
-  }
+  // constructor(private brandService: BrandService) {
+  //   this.brands$ = this.brandService.getAllMakes();
+  // }
 }

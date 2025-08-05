@@ -1,4 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
+import { CarBrandffects } from './features/store/car-brand.effects';
+import { carBrandReducer } from './features/store/carb-brand.reducer';
+import { isDevMode } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
@@ -12,6 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideStore({ carBrand: carBrandReducer }),
+    provideEffects([CarBrandffects]),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
