@@ -8,6 +8,8 @@ import { CarBrand } from '../../interfaces/car-brand';
 import { CommonModule } from '@angular/common';
 import { MatCard } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { selectAllCarBrands } from '../../../store/car-brand.selectors';
 
@@ -24,6 +26,7 @@ import { selectAllCarBrands } from '../../../store/car-brand.selectors';
     MatLabel,
     MatFormField,
     MatInputModule,
+    MatListModule,
   ],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css',
@@ -31,9 +34,8 @@ import { selectAllCarBrands } from '../../../store/car-brand.selectors';
 export class BrandsComponent {
   private store = inject(Store);
   allBrands$: Observable<CarBrand[]> = this.store.select(selectAllCarBrands);
-
   searchControl = new FormControl('');
-
+  private router: Router = inject(Router);
   brands$ = combineLatest([
     this.allBrands$,
     this.searchControl.valueChanges.pipe(startWith('')),
@@ -48,4 +50,8 @@ export class BrandsComponent {
       }),
     ),
   );
+
+  onSelectBrand(brand: CarBrand): void {
+    this.router.navigate(['/brands', brand.id]);
+  }
 }
