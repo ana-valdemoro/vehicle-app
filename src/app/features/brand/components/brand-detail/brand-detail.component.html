@@ -1,6 +1,64 @@
-<!-- Back Button -->
-<button mat-button color="primary" class="mb-4" (click)="onNavigateBack()">
+<button mat-raised-button color="primary" class="mb-4" (click)="onNavigateBack()">
   <mat-icon>arrow_back</mat-icon>
   Back to Brands
 </button>
 
+<div class="flex items-center mb-6">
+  <mat-icon class="mr-2 big-icon" style="font-size: 4em;">directions_car</mat-icon>
+
+  <div>
+    <h1 class="text-2xl font-bold mb-0">Toyota 1</h1>
+    <p class="text-gray-600">Japan</p>
+  </div>
+</div>
+
+<h2>Vehicle Types</h2>
+
+@for(category of vehicleCategories; track category.type) {
+    <div class="mb-6">
+      <mat-card>
+        <mat-card-title class="text-lg font-semibold flex justify-between items-center">
+          {{ category.type }}
+          <mat-chip>{{ category.models.length }} models</mat-chip>
+        </mat-card-title>
+        <mat-card-content>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            @for(model of category.models; track model.name) {
+              <mat-card class="bg-gray-50">
+                <mat-card-title>{{ model.name }}</mat-card-title>
+                <mat-card-subtitle>Year: {{ model.year }}</mat-card-subtitle>
+                <div class="text-blue-600 font-semibold mt-2">${{ model.price | currency }}</div>
+              </mat-card>
+            }
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+}
+
+
+<h2>Models</h2>
+
+@for(category of vehicleCategories; track category.type) {
+    <div class="mb-6">
+      <mat-card>
+        <mat-card-title class="text-lg font-semibold flex justify-between items-center">
+          {{ category.type }}
+          <mat-chip>{{ category.models.length }} models</mat-chip>
+        </mat-card-title>
+        <mat-card-content>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            @for(model of category.models; track model.name) {
+              <mat-card class="bg-gray-50">
+                <mat-card-title>{{ model.name }}</mat-card-title>
+                <mat-card-subtitle>Year: {{ model.year }}</mat-card-subtitle>
+                <div class="text-blue-600 font-semibold mt-2">${{ model.price | currency }}</div>
+              </mat-card>
+            }
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+}

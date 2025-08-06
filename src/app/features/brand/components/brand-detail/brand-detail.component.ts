@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatCard, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 
 import { CurrencyPipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -18,6 +19,7 @@ import { routes } from '../../../../shared/enums/routes';
     MatCardSubtitle,
     MatChipsModule,
     MatIconModule,
+    MatButtonModule,
   ],
   templateUrl: './brand-detail.component.html',
   styleUrl: './brand-detail.component.css',
