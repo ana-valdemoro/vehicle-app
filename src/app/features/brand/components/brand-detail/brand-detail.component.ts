@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, inject } from '@angular/core';
 import { MatCard, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
-import { selectModelsByBrand, selectVehicleBrandById } from '../../../store/selectors/vehicle-brand.selectors';
 
 import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { VehicleBrand } from '../../interfaces/vehicle-brand';
 import { VehicleModel } from '../../interfaces/vehicle-model';
+import { map } from 'rxjs';
 import { routes } from '../../../../shared/enums/routes';
+import {
+selectVehicleBrandById,
+} from '../../../store/selectors/vehicle-brand.selectors';
 
 @Component({
   selector: 'app-brand-detail',
@@ -48,10 +51,8 @@ export class BrandDetailComponent implements OnInit {
       this.brand = brand;
     });
 
-    this.store.select(selectModelsByBrand(Number(this.brandId))).subscribe(models => {
-      if (models) {
-        this.models = models;
-      }
+    this.route.data.pipe(map(data => data['models'] as VehicleModel[])).subscribe(models => {
+      this.models = models;
     });
   }
 
