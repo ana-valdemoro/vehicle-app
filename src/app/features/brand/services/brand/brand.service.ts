@@ -1,8 +1,8 @@
-import { CarBrand } from '../../interfaces/car-brand';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MakeList } from '../../interfaces/make';
 import { Observable } from 'rxjs';
+import { VehicleBrand } from '../../interfaces/vehicle-brand';
 import { environment } from '../../../../../environments/environment.development';
 import { map } from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class BrandService {
   constructor(private http: HttpClient) {}
 
-  getAllMakes(): Observable<CarBrand[]> {
+  getAllMakes(): Observable<VehicleBrand[]> {
     const url = `${environment.baseUrl}/GetAllMakes?format=json`;
     return this.http.get<MakeList>(url).pipe(
       map(response =>

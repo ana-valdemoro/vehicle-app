@@ -4,13 +4,13 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { Observable, combineLatest, map, startWith } from 'rxjs';
 
-import { CarBrand } from '../../interfaces/car-brand';
 import { CommonModule } from '@angular/common';
 import { MatCard } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { VehicleBrand } from '../../interfaces/vehicle-brand';
 import { selectAllCarBrands } from '../../../store/car-brand.selectors';
 
 @Component({
@@ -33,7 +33,7 @@ import { selectAllCarBrands } from '../../../store/car-brand.selectors';
 })
 export class BrandsComponent {
   private store = inject(Store);
-  allBrands$: Observable<CarBrand[]> = this.store.select(selectAllCarBrands);
+  allBrands$: Observable<VehicleBrand[]> = this.store.select(selectAllCarBrands);
   searchControl = new FormControl('');
   private router: Router = inject(Router);
   brands$ = combineLatest([
@@ -51,7 +51,7 @@ export class BrandsComponent {
     ),
   );
 
-  onSelectBrand(brand: CarBrand): void {
+  onSelectBrand(brand: VehicleBrand): void {
     this.router.navigate(['/brands', brand.id]);
   }
 }
