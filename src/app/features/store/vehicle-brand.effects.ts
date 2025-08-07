@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadVehicleBrand, loadVehicleBrandSuccess } from './car-brand.actions';
+import { loadVehicleBrand, loadVehicleBrandSuccess } from './vehicle-brand.actions';
 import { map, switchMap } from 'rxjs';
 
 import { BrandService } from '../brand/services/brand/brand.service';

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadVehicleBrand, loadVehicleBrandSuccess } from './car-brand.actions';
+import { loadVehicleBrand, loadVehicleBrandSuccess } from './vehicle-brand.actions';
 
 import { VehicleBrand } from '../brand/interfaces/vehicle-brand';
 

@@ -11,7 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { VehicleBrand } from '../../interfaces/vehicle-brand';
-import { selectAllVehicleBrands } from '../../../store/car-brand.selectors';
+import { selectAllVehicleBrands } from '../../../store/vehicle-brand.selectors';
 
 @Component({
   selector: 'app-brands',
