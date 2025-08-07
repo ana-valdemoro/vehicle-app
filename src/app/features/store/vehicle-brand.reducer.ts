@@ -1,21 +1,21 @@
 import { createReducer, on } from '@ngrx/store';
 import { loadCarBrand, loadCarBrandSuccess } from './car-brand.actions';
 
-import { CarBrand } from '../brand/interfaces/car-brand';
+import { VehicleBrand } from '../brand/interfaces/vehicle-brand';
 
-export interface CarBrandState {
+export interface VehicleBrandState {
   loading: boolean;
   error: unknown;
-  carBrands: CarBrand[];
+  vehicleBrands: VehicleBrand[];
 }
 
-export const initialState: CarBrandState = {
+export const initialState: VehicleBrandState = {
   loading: false,
   error: null,
-  carBrands: [],
+  vehicleBrands: [],
 };
 
-export const carBrandReducer = createReducer(
+export const vehicleBrandReducer = createReducer(
   initialState,
   on(loadCarBrand, state => ({
     ...state,
@@ -25,6 +25,6 @@ export const carBrandReducer = createReducer(
   on(loadCarBrandSuccess, (state, { carBrands }) => ({
     ...state,
     loading: false,
-    carBrands: carBrands,
+    vehicleBrands: carBrands,
   })),
 );

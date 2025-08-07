@@ -1,20 +1,20 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { CarBrandState } from './carb-brand.reducer';
+import { VehicleBrandState } from './vehicle-brand.reducer';
 
-export const selectCarBrandState = createFeatureSelector<CarBrandState>('carBrand');
+export const selectVehicleBrandState = createFeatureSelector<VehicleBrandState>('carBrand');
 
-export const selectAllCarBrands = createSelector(
-  selectCarBrandState,
-  (state: CarBrandState) => state.carBrands,
+export const selectAllVehicleBrands = createSelector(
+  selectVehicleBrandState,
+  (state: VehicleBrandState) => state.vehicleBrands,
 );
 
-export const selectCarBrandLoading = createSelector(
-  selectCarBrandState,
-  (state: CarBrandState) => state.loading,
+export const selectVehicleBrandLoading = createSelector(
+  selectVehicleBrandState,
+  (state: VehicleBrandState) => state.loading,
 );
 
-export const selectCarBrandError = createSelector(
-  selectCarBrandState,
-  (state: CarBrandState) => state.error,
+export const selectVehicleBrandError = createSelector(
+  selectVehicleBrandState,
+  (state: VehicleBrandState) => state.error,
 );
