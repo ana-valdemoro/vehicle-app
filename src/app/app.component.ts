@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { loadCarBrand } from './features/store/car-brand.actions';
+import { loadVehicleBrand } from './features/store/car-brand.actions';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +17,6 @@ export class AppComponent implements OnInit {
   title = 'vehicle-app';
 
   ngOnInit(): void {
-    this.store.dispatch(loadCarBrand());
+    this.store.dispatch(loadVehicleBrand());
   }
 }

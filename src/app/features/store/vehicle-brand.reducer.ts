@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadCarBrand, loadCarBrandSuccess } from './car-brand.actions';
+import { loadVehicleBrand, loadVehicleBrandSuccess } from './car-brand.actions';
 
 import { VehicleBrand } from '../brand/interfaces/vehicle-brand';
 
@@ -17,14 +17,14 @@ export const initialState: VehicleBrandState = {
 
 export const vehicleBrandReducer = createReducer(
   initialState,
-  on(loadCarBrand, state => ({
+  on(loadVehicleBrand, state => ({
     ...state,
     loading: true,
   })),
 
-  on(loadCarBrandSuccess, (state, { carBrands }) => ({
+  on(loadVehicleBrandSuccess, (state, { vehicleBrands }) => ({
     ...state,
     loading: false,
-    vehicleBrands: carBrands,
+    vehicleBrands,
   })),
 );
