@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import { MatCard, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 
@@ -5,7 +6,6 @@ import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
 import { routes } from '../../../../shared/enums/routes';
 
 @Component({
@@ -26,6 +26,15 @@ import { routes } from '../../../../shared/enums/routes';
 })
 export class BrandDetailComponent {
   private router: Router = inject(Router);
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  brandId: string | null = null;
+
+  constructor() {
+    this.route.params.subscribe(params => {
+      this.brandId = params['id'];
+    });
+  }
+
   vehicleCategories = [
     {
       type: 'Sedan',
@@ -37,6 +46,8 @@ export class BrandDetailComponent {
     },
   ];
 
+  // TODO 1: extrac paremeter from router url
+  // TODO 2: get brand details from store
   onNavigateBack(): void {
     this.router.navigate([`/${routes.BRANDS}`]);
   }
