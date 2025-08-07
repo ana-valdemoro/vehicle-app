@@ -1,11 +1,15 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatCard, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { selectModelsByBrand, selectVehicleBrandById } from '../../../store/selectors/vehicle-brand.selectors';
 
 import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { Store } from '@ngrx/store';
+import { VehicleBrand } from '../../interfaces/vehicle-brand';
+import { VehicleModel } from '../../interfaces/vehicle-model';
 import { routes } from '../../../../shared/enums/routes';
 
 @Component({
@@ -24,10 +28,14 @@ import { routes } from '../../../../shared/enums/routes';
   templateUrl: './brand-detail.component.html',
   styleUrl: './brand-detail.component.css',
 })
-export class BrandDetailComponent {
+export class BrandDetailComponent implements OnInit {
   private router: Router = inject(Router);
   private route: ActivatedRoute = inject(ActivatedRoute);
-  brandId: string | null = null;
+  private store = inject(Store);
+
+  brandId!: string;
+  models: VehicleModel[] = [];
+  brand: VehicleBrand | undefined;
 
   constructor() {
     this.route.params.subscribe(params => {
@@ -35,19 +43,18 @@ export class BrandDetailComponent {
     });
   }
 
-  vehicleCategories = [
-    {
-      type: 'Sedan',
-      models: [
-        { name: 'Camry', year: 2024, price: 25000 },
-        { name: 'Corolla', year: 2024, price: 22000 },
-        { name: 'Avalon', year: 2024, price: 36000 },
-      ],
-    },
-  ];
+  ngOnInit(): void {
+    this.store.select(selectVehicleBrandById(Number(this.brandId))).subscribe(brand => {
+      this.brand = brand;
+    });
 
-  // TODO 1: extrac paremeter from router url
-  // TODO 2: get brand details from store
+    this.store.select(selectModelsByBrand(Number(this.brandId))).subscribe(models => {
+      if (models) {
+        this.models = models;
+      }
+    });
+  }
+
   onNavigateBack(): void {
     this.router.navigate([`/${routes.BRANDS}`]);
   }

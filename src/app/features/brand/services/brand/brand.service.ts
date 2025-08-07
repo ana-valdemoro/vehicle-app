@@ -32,7 +32,7 @@ export class BrandService {
       map(response =>
         response.Results.map(model => ({
           id: model.Model_ID,
-          name: model.Model_name,
+          name: model.Model_Name,
         })),
       ),
     );

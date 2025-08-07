@@ -9,6 +9,11 @@ export const selectAllVehicleBrands = createSelector(
   (state: VehicleBrandState) => state.vehicleBrands,
 );
 
+export const selectVehicleBrandById = (brandId: number) =>
+  createSelector(selectAllVehicleBrands, vehicleBrands =>
+    vehicleBrands.find(brand => brand.id === brandId),
+  );
+
 export const selectVehicleBrandLoading = createSelector(
   selectVehicleBrandState,
   (state: VehicleBrandState) => state.loading,
@@ -18,3 +23,9 @@ export const selectVehicleBrandError = createSelector(
   selectVehicleBrandState,
   (state: VehicleBrandState) => state.error,
 );
+
+export const selectModelsByBrand = (brandId: number) =>
+  createSelector(
+    selectVehicleBrandState,
+    (state: VehicleBrandState) => state.modelsByBrand[brandId] || [],
+  );
