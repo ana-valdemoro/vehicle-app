@@ -3,7 +3,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { loadVehicleBrand } from './features/store/vehicle-brand.actions';
+import { loadVehicleBrand } from './features/store/actions/vehicle-brand.actions';
 
 @Component({
   selector: 'app-root',

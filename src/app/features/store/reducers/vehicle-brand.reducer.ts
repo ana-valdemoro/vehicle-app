@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadVehicleBrand, loadVehicleBrandSuccess } from './vehicle-brand.actions';
+import { loadVehicleBrand, loadVehicleBrandSuccess } from '../actions/vehicle-brand.actions';
 
-import { VehicleBrand } from '../brand/interfaces/vehicle-brand';
+import { VehicleBrand } from '../../brand/interfaces/vehicle-brand';
 
 export interface VehicleBrandState {
   loading: boolean;

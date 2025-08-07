@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { VehicleBrand } from '../brand/interfaces/vehicle-brand';
+import { VehicleBrand } from '../../brand/interfaces/vehicle-brand';
 
 //  ACTIONS IDENTIFIERS
 export const LOAD_ACTION = '[Vehicle brand] Load Vehicle Brands';
