@@ -1,56 +1,52 @@
-<button mat-raised-button color="primary" class="mb-4" (click)="onNavigateBack()">
-  <mat-icon>arrow_back</mat-icon>
-  Back to Brands
-</button>
+<div class="brand-detail">
+  <button mat-raised-button color="primary" (click)="onNavigateBack()">
+    <mat-icon>arrow_back</mat-icon>
+    Back to Brands
+  </button>
 
-<div class="flex items-center mb-6">
-  <mat-icon class="mr-2 big-icon" style="font-size: 4em">directions_car</mat-icon>
-
-  <div>
-    <h1 class="text-2xl font-bold mb-0">{{ brand?.name }}</h1>
-    <p class="text-gray-600">Japan</p>
+  <div class="brand-detail__header">
+    <mat-icon class="brand-detail__icon">directions_car</mat-icon>
+    <div>
+      <h1 class="brand-detail__title">{{ brand?.name }}</h1>
+      <p class="brand-detail__subtitle">Japan</p>
+    </div>
   </div>
-</div>
 
-<h2>Models</h2>
-
-
-    <div class="mb-6">
-      <mat-card>
-          <div class="flex justify-end" >
-            <mat-chip>{{ models.length }} models</mat-chip>
-
-          </div>
-        <mat-card-content>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            @for(model of models; track model.id) {
-              <mat-card class="bg-gray-50">
-                <mat-card-title>{{ model.name }}</mat-card-title>
-                <mat-card-subtitle>Year: 2026</mat-card-subtitle>
-                <div class="text-blue-600 font-semibold mt-2">{{ 3000 | currency }}</div>
-              </mat-card>
-            }
-
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
-
-<h2>Vehicle types</h2>
-
-<div class="mb-6">
-  <mat-card>
-    <div class="flex justify-end">
-      <mat-chip>{{ types.length }} types</mat-chip>
-    </div>
-    <mat-card-content>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        @for (type of types; track type.id) {
-          <mat-card class="bg-gray-50">
-            <mat-card-title>{{ type.name }}</mat-card-title>          </mat-card>
-        }
+  <h2>Models</h2>
+  <div class="brand-detail__section brand-detail__models">
+    <mat-card>
+      <div class="brand-detail__chips">
+        <mat-chip>{{ models.length }} models</mat-chip>
       </div>
-    </mat-card-content>
-  </mat-card>
+      <mat-card-content>
+        <div class="brand-detail__grid">
+          @for (model of models; track model.id) {
+            <mat-card class="brand-detail__card">
+              <mat-card-title>{{ model.name }}</mat-card-title>
+              <mat-card-subtitle>Year: 2026</mat-card-subtitle>
+              <div class="brand-detail__price">{{ 3000 | currency }}</div>
+            </mat-card>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <h2>Vehicle types</h2>
+  <div class="brand-detail__section brand-detail__types">
+    <mat-card>
+      <div class="brand-detail__chips">
+        <mat-chip>{{ types.length }} types</mat-chip>
+      </div>
+      <mat-card-content>
+        <div class="brand-detail__grid">
+          @for (type of types; track type.id) {
+            <mat-card class="brand-detail__card">
+              <mat-card-title>{{ type.name }}</mat-card-title>
+            </mat-card>
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

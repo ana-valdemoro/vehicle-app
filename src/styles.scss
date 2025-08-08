@@ -1,3 +1,5 @@
+@use './assets/colors.scss' as *;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,13 +8,13 @@
 
 body {
   font-family: 'Roboto', Arial, sans-serif;
-  background: #f5f6fa;
-  color: #222;
+  background: $white-color;
+  color: $gray-900-color;
   min-height: 100vh;
 }
 
 a {
-  color: #1976d2;
+  color: $blue-700-color;
   text-decoration: none;
 }
 
@@ -33,4 +35,6 @@ a:hover {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
+
+
 
