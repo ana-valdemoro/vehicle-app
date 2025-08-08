@@ -1,5 +1,12 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { loadVehicleBrand, loadVehicleBrandSuccess, loadVehicleModelByBrand, loadVehicleModelByBrandSuccess } from '../actions/vehicle-brand.actions';
+import {
+  loadVehicleBrand,
+  loadVehicleBrandSuccess,
+  loadVehicleModelByBrand,
+  loadVehicleModelByBrandSuccess,
+  loadVehicleTypesByBrand,
+  loadVehicleTypesByBrandSuccess,
+} from '../actions/vehicle-brand.actions';
 import { map, switchMap } from 'rxjs';
 
 import { BrandService } from '../../brand/services/brand/brand.service';
@@ -30,6 +37,21 @@ export class VehicleBrandffects {
         this.brandService
           .getModelsByBrand(action.brandId)
           .pipe(map(models => loadVehicleModelByBrandSuccess({ models, brandId: action.brandId }))),
+      ),
+    ),
+  );
+
+  loadVehicleTypesByBrand$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadVehicleTypesByBrand),
+      switchMap(action =>
+        this.brandService
+          .getVehicleTypesByBrand(action.brandId)
+          .pipe(
+            map(vehicleTypes =>
+              loadVehicleTypesByBrandSuccess({ vehicleTypes, brandId: action.brandId }),
+            ),
+          ),
       ),
     ),
   );

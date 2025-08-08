@@ -17,12 +17,10 @@
 
     <div class="mb-6">
       <mat-card>
-        <!-- <mat-card-title class="text-lg font-semibold flex justify-between items-center"> -->
           <div class="flex justify-end" >
             <mat-chip>{{ models.length }} models</mat-chip>
 
           </div>
-        <!-- </mat-card-title> -->
         <mat-card-content>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
             @for(model of models; track model.id) {
@@ -41,24 +39,18 @@
 
 <h2>Vehicle types</h2>
 
-<!-- @for (model of models; track model.id) {
-  <div class="mb-6">
-    <mat-card>
-      <mat-card-title class="text-lg font-semibold flex justify-between items-center">
-        {{ model.name }}
-        <mat-chip>{{ model.models.length }} models</mat-chip>
-      </mat-card-title>
-      <mat-card-content>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-          @for (model of model.models; track model.name) {
-            <mat-card class="bg-gray-50">
-              <mat-card-title>{{ model.name }}</mat-card-title>
-              <mat-card-subtitle>Year: {{ model.year }}</mat-card-subtitle>
-              <div class="text-blue-600 font-semibold mt-2">${{ model.price | currency }}</div>
-            </mat-card>
-          }
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-} -->
+<div class="mb-6">
+  <mat-card>
+    <div class="flex justify-end">
+      <mat-chip>{{ types.length }} types</mat-chip>
+    </div>
+    <mat-card-content>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        @for (type of types; track type.id) {
+          <mat-card class="bg-gray-50">
+            <mat-card-title>{{ type.name }}</mat-card-title>          </mat-card>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

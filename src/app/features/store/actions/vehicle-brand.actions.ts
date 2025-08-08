@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { VehicleBrand } from '../../brand/interfaces/vehicle-brand';
 import { VehicleModel } from '../../brand/interfaces/vehicle-model';
+import { VehicleType } from '../../brand/interfaces/vehicle-type';
 
 //  ACTIONS IDENTIFIERS
 export const LOAD_ACTION = '[Vehicle brand] Load Vehicle Brands';
@@ -11,6 +12,10 @@ export const LOAD_FAILURE_ACTION = '[Vehicle brand] Load Vehicle Brands Failure'
 export const LOAD_MODEL_BY_BRAND = '[Vehicle brand] Load Vehicle Model By Brand';
 export const LOAD_MODEL_BY_BRAND_SUCCESS = '[Vehicle brand] Load Vehicle Model By Brand Success';
 export const LOAD_MODEL_BY_BRAND_FAILURE = '[Vehicle brand] Load Vehicle Model By Brand Failure';
+
+export const LOAD_VEHICLE_TYPES_BY_BRAND = '[Vehicle brand] Load Vehicle Types By Brand';
+export const LOAD_VEHICLE_TYPES_BY_BRAND_SUCCESS =
+  '[Vehicle brand] Load Vehicle Types By Brand Success';
 
 export const loadVehicleBrand = createAction(LOAD_ACTION);
 export const loadVehicleBrandSuccess = createAction(
@@ -29,4 +34,14 @@ export const loadVehicleModelByBrand = createAction(
 export const loadVehicleModelByBrandSuccess = createAction(
   LOAD_MODEL_BY_BRAND_SUCCESS,
   props<{ models: VehicleModel[]; brandId: number }>(),
+);
+
+export const loadVehicleTypesByBrand = createAction(
+  LOAD_VEHICLE_TYPES_BY_BRAND,
+  props<{ brandId: number }>(),
+);
+
+export const loadVehicleTypesByBrandSuccess = createAction(
+  LOAD_VEHICLE_TYPES_BY_BRAND_SUCCESS,
+  props<{ vehicleTypes: VehicleType[]; brandId: number }>(),
 );

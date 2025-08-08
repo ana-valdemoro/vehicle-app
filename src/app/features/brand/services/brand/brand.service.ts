@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MakeList } from '../../interfaces/make';
-import { ModelList } from '../../interfaces/model';
+import { MakeList } from '../../interfaces/vpic-make';
+import { ModelList } from '../../interfaces/vpic-model';
 import { Observable } from 'rxjs';
 import { VehicleBrand } from '../../interfaces/vehicle-brand';
 import { VehicleModel } from '../../interfaces/vehicle-model';
+import { VehicleType } from '../../interfaces/vehicle-type';
+import { VpicTypeList } from '../../interfaces/vpic-type';
 import { environment } from '../../../../../environments/environment.development';
 import { map } from 'rxjs/operators';
 
@@ -33,6 +35,18 @@ export class BrandService {
         response.Results.map(model => ({
           id: model.Model_ID,
           name: model.Model_Name,
+        })),
+      ),
+    );
+  }
+
+  getVehicleTypesByBrand(brandId: number): Observable<VehicleType[]> {
+    const url = `${environment.baseUrl}/GetVehicleTypesForMakeId/${brandId}?format=json`;
+    return this.http.get<VpicTypeList>(url).pipe(
+      map(response =>
+        response.Results.map(type => ({
+          id: type.VehicleTypeId,
+          name: type.VehicleTypeName,
         })),
       ),
     );
