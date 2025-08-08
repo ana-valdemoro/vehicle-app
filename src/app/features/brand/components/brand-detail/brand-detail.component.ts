@@ -41,15 +41,15 @@ export class BrandDetailComponent implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
 
   constructor() {
-    this.route.params.subscribe(params => {
-      this.brandId = params['id'];
+    this.route.params.subscribe(({ id }) => {
+      this.brandId = id;
     });
   }
 
   ngOnInit(): void {
     const brand$ = this.store.select(selectVehicleBrandById(Number(this.brandId)));
-    const models$ = this.route.data.pipe(map(data => data['models'] as VehicleModel[]));
-    const types$ = this.route.data.pipe(map(data => data['types'] as VehicleType[]));
+    const models$ = this.route.data.pipe(map(({ models }) => models as VehicleModel[]));
+    const types$ = this.route.data.pipe(map(({ types }) => types as VehicleType[]));
 
     this.subscriptions.add(
       combineLatest([brand$, models$, types$]).subscribe(([brand, models, types]) => {

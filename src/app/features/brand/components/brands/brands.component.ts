@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { VehicleBrand } from '../../interfaces/vehicle-brand';
+import { routes } from '../../../../shared/enums/routes';
 import { selectAllVehicleBrands } from '../../../store/selectors/vehicle-brand.selectors';
 
 @Component({
@@ -33,9 +34,9 @@ import { selectAllVehicleBrands } from '../../../store/selectors/vehicle-brand.s
 })
 export class BrandsComponent {
   private store = inject(Store);
+  private router: Router = inject(Router);
   allBrands$: Observable<VehicleBrand[]> = this.store.select(selectAllVehicleBrands);
   searchControl = new FormControl('');
-  private router: Router = inject(Router);
   brands$ = combineLatest([
     this.allBrands$,
     this.searchControl.valueChanges.pipe(startWith('')),
@@ -52,6 +53,6 @@ export class BrandsComponent {
   );
 
   onSelectBrand(brand: VehicleBrand): void {
-    this.router.navigate(['/brands', brand.id]);
+    this.router.navigate([`/${routes.BRANDS}`, brand.id]);
   }
 }

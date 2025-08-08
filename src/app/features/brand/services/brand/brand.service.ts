@@ -20,8 +20,8 @@ export class BrandService {
   getAllMakes(): Observable<VehicleBrand[]> {
     const url = `${environment.baseUrl}/GetAllMakes?format=json`;
     return this.http.get<MakeList>(url).pipe(
-      map(response =>
-        response.Results.map(make => ({
+      map(({ Results }) =>
+        Results.map(make => ({
           id: make.Make_ID,
           name: make.Make_Name,
         })),
@@ -32,10 +32,10 @@ export class BrandService {
   getModelsByBrand(brandId: number): Observable<VehicleModel[]> {
     const url = `${environment.baseUrl}/GetModelsForMakeId/${brandId}?format=json`;
     return this.http.get<ModelList>(url).pipe(
-      map(response =>
-        response.Results.map(model => ({
-          id: model.Model_ID,
-          name: model.Model_Name,
+      map(({ Results }) =>
+        Results.map(({ Model_ID, Model_Name }) => ({
+          id: Model_ID,
+          name: Model_Name,
         })),
       ),
     );
@@ -44,10 +44,10 @@ export class BrandService {
   getVehicleTypesByBrand(brandId: number): Observable<VehicleType[]> {
     const url = `${environment.baseUrl}/GetVehicleTypesForMakeId/${brandId}?format=json`;
     return this.http.get<VpicTypeList>(url).pipe(
-      map(response =>
-        response.Results.map(type => ({
-          id: type.VehicleTypeId,
-          name: type.VehicleTypeName,
+      map(({ Results }) =>
+        Results.map(({ VehicleTypeId, VehicleTypeName }) => ({
+          id: VehicleTypeId,
+          name: VehicleTypeName,
         })),
       ),
     );
