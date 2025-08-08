@@ -10,7 +10,7 @@ import { loadVehicleBrand } from './features/store/actions/vehicle-brand.actions
   standalone: true,
   imports: [RouterOutlet, MatToolbar],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   private store = inject(Store);

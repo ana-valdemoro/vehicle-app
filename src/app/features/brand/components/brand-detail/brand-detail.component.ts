@@ -28,7 +28,7 @@ import { selectVehicleBrandById } from '../../../store/selectors/vehicle-brand.s
     MatButtonModule,
   ],
   templateUrl: './brand-detail.component.html',
-  styleUrl: './brand-detail.component.css',
+  styleUrl: './brand-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandDetailComponent implements OnInit, OnDestroy {

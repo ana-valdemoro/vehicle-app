@@ -30,7 +30,7 @@ import { selectAllVehicleBrands } from '../../../store/selectors/vehicle-brand.s
     MatListModule,
   ],
   templateUrl: './brands.component.html',
-  styleUrl: './brands.component.css',
+  styleUrl: './brands.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandsComponent {
