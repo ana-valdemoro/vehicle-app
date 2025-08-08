@@ -1,5 +1,6 @@
+import { Injectable, inject } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { MakeList } from '../../interfaces/vpic-make';
 import { ModelList } from '../../interfaces/vpic-model';
 import { Observable } from 'rxjs';
@@ -14,7 +15,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class BrandService {
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   getAllMakes(): Observable<VehicleBrand[]> {
     const url = `${environment.baseUrl}/GetAllMakes?format=json`;

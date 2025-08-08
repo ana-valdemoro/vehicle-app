@@ -1,4 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Injectable, inject } from '@angular/core';
 import {
   loadVehicleBrand,
   loadVehicleBrandSuccess,
@@ -10,14 +11,11 @@ import {
 import { map, switchMap } from 'rxjs';
 
 import { BrandService } from '../../brand/services/brand/brand.service';
-import { Injectable } from '@angular/core';
 
 @Injectable()
 export class VehicleBrandffects {
-  constructor(
-    private actions$: Actions,
-    private brandService: BrandService,
-  ) {}
+  private actions$: Actions = inject(Actions);
+  private brandService: BrandService = inject(BrandService);
 
   loadCarBrand$ = createEffect(() =>
     this.actions$.pipe(

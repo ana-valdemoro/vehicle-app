@@ -1,26 +1,24 @@
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { filter, first, switchMap, take, tap } from 'rxjs/operators';
 
-import { Injectable } from '@angular/core';
+import { VehicleModel } from '../../interfaces/vehicle-model';
 import { loadVehicleModelByBrand } from '../../../store/actions/vehicle-brand.actions';
 import { of } from 'rxjs';
 import { routes } from '../../../../shared/enums/routes';
 import { selectModelsByBrand } from '../../../store/selectors/vehicle-brand.selectors';
 
 @Injectable({ providedIn: 'root' })
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export class VehicleModelByBrandResolver implements Resolve<any> {
-  constructor(
-    private store: Store,
-    private router: Router,
-  ) {}
+export class VehicleModelByBrandResolver implements Resolve<VehicleModel[]> {
+  private store: Store = inject(Store);
+  private router: Router = inject(Router);
 
   resolve(route: ActivatedRouteSnapshot) {
     const brandId = Number(route.paramMap.get('id'));
     if (isNaN(brandId)) {
       this.router.navigate([`/${routes.BRANDS}`]);
-      return of(null);
+      return of([]);
     }
     return this.store.pipe(
       // 1) Lee una vez el estado actual para estos modelos
