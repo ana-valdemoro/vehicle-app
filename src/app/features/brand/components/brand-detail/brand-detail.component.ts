@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatCard, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
 import { Subscription, combineLatest, map } from 'rxjs';
 
@@ -29,6 +29,7 @@ import { selectVehicleBrandById } from '../../../store/selectors/vehicle-brand.s
   ],
   templateUrl: './brand-detail.component.html',
   styleUrl: './brand-detail.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandDetailComponent implements OnInit, OnDestroy {
   brandId!: string;

@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { Observable, combineLatest, map, startWith } from 'rxjs';
@@ -31,6 +31,7 @@ import { selectAllVehicleBrands } from '../../../store/selectors/vehicle-brand.s
   ],
   templateUrl: './brands.component.html',
   styleUrl: './brands.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BrandsComponent {
   private store = inject(Store);
