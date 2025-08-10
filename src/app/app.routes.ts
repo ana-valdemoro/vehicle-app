@@ -2,6 +2,7 @@ import { routes as ROUTES } from './shared/enums/routes';
 import { Routes } from '@angular/router';
 import { VehicleModelByBrandResolver } from './features/brand/components/resolvers/vehicle-model-by-brand.resolver';
 import { VehicleTypeByBrandResolver } from './features/brand/components/resolvers/vehicle-type-by-brand.resolver';
+import { brandDetailResolver } from './features/brand/components/resolvers/brand-detail.resolver';
 
 export const routes: Routes = [
   { path: '', redirectTo: ROUTES.BRANDS, pathMatch: 'full' },
@@ -18,8 +19,7 @@ export const routes: Routes = [
         m => m.BrandDetailComponent,
       ),
     resolve: {
-      models: VehicleModelByBrandResolver,
-      types: VehicleTypeByBrandResolver,
+      data: brandDetailResolver,
     },
   },
 ];
