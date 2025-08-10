@@ -9,11 +9,8 @@ export const CHANGE_LOADING_VEHICLE_BRAND_ACTION = '[Vehicle brand] Change Loadi
 export const LOAD_BRANDS_SUCCESS_ACTION = '[Vehicle brand] Load Vehicle Brands Success';
 export const LOAD_BRANDS_FAILURE_ACTION = '[Vehicle brand] Load Vehicle Brands Failure';
 
-export const LOAD_MODEL_BY_BRAND = '[Vehicle brand] Load Vehicle Model By Brand';
 export const LOAD_MODEL_BY_BRAND_SUCCESS = '[Vehicle brand] Load Vehicle Model By Brand Success';
-export const LOAD_MODEL_BY_5BRAND_FAILURE = '[Vehicle brand] Load Vehicle Model By Brand Failure';
 
-export const LOAD_VEHICLE_TYPES_BY_BRAND = '[Vehicle brand] Load Vehicle Types By Brand';
 export const LOAD_VEHICLE_TYPES_BY_BRAND_SUCCESS =
   '[Vehicle brand] Load Vehicle Types By Brand Success';
 
@@ -31,18 +28,9 @@ export const changeLoadingVehicleBrand = createAction(
   props<{ loading: boolean }>(),
 );
 
-export const loadVehicleModelByBrand = createAction(
-  LOAD_MODEL_BY_BRAND,
-  props<{ brandId: number }>(),
-);
 export const loadVehicleModelByBrandSuccess = createAction(
   LOAD_MODEL_BY_BRAND_SUCCESS,
   props<{ models: VehicleModel[]; brandId: number }>(),
-);
-
-export const loadVehicleTypesByBrand = createAction(
-  LOAD_VEHICLE_TYPES_BY_BRAND,
-  props<{ brandId: number }>(),
 );
 
 export const loadVehicleTypesByBrandSuccess = createAction(
