@@ -1,24 +1,19 @@
 import { ActivatedRouteSnapshot, ResolveFn, Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
 import {
   changeLoadingVehicleBrand,
   loadVehicleModelByBrandSuccess,
   loadVehicleTypesByBrandSuccess,
 } from '../../../store/actions/vehicle-brand.actions';
-import { combineLatest, forkJoin, of } from 'rxjs';
 import { finalize, switchMap, take, tap } from 'rxjs/operators';
-import {
-  selectHasModelsByBrand,
-  selectHasTypesByBrand,
-  selectModelsByBrand,
-  selectTypesByBrand,
-} from '../../../store/selectors/vehicle-brand.selectors';
+import { forkJoin, of } from 'rxjs';
 
 import { BrandService } from '../../services/brand/brand.service';
+import { Store } from '@ngrx/store';
 import { VehicleModel } from '../../interfaces/vehicle-model';
 import { VehicleType } from '../../interfaces/vehicle-type';
 import { inject } from '@angular/core';
 import { routes } from '../../../../shared/enums/routes';
+import { selectModelsAndTypesByBrand } from '../../../store/selectors/vehicle-brand.selectors';
 
 export const brandDetailResolver: ResolveFn<{
   models: VehicleModel[];
@@ -34,29 +29,25 @@ export const brandDetailResolver: ResolveFn<{
     return of({ models: [], types: [] });
   }
 
-  return combineLatest([
-    store.pipe(select(selectHasModelsByBrand(brandId)), take(1)),
-    store.pipe(select(selectHasTypesByBrand(brandId)), take(1)),
-    store.pipe(select(selectModelsByBrand(brandId)), take(1)),
-    store.pipe(select(selectTypesByBrand(brandId)), take(1)),
-  ]).pipe(
-    switchMap(([hasModels, hasTypes, existingModels, existingTypes]) => {
-      if (hasModels && hasTypes) {
-        return of({ models: existingModels, types: existingTypes });
+  return store.select(selectModelsAndTypesByBrand(brandId)).pipe(
+    take(1),
+    switchMap(({ models, types }) => {
+      if (models && types) {
+        return of({ models, types });
       }
 
       store.dispatch(changeLoadingVehicleBrand({ loading: true }));
 
-      const models$ = hasModels
-        ? of(existingModels)
+      const models$ = models
+        ? of(models)
         : brandService
             .getModelsByBrand(brandId)
             .pipe(
               tap(models => store.dispatch(loadVehicleModelByBrandSuccess({ models, brandId }))),
             );
 
-      const types$ = hasTypes
-        ? of(existingTypes)
+      const types$ = types
+        ? of(types)
         : brandService
             .getVehicleTypesByBrand(brandId)
             .pipe(
