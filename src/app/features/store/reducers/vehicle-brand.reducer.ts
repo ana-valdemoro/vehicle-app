@@ -13,7 +13,7 @@ import { VehicleType } from '../../brand/interfaces/vehicle-type';
 
 export interface VehicleBrandState {
   loading: boolean;
-  error: unknown;
+  error: unknown | null;
   vehicleBrands: VehicleBrand[];
   modelsByBrand: { [brandId: number]: VehicleModel[] };
   vehicleTypesByBrand: { [brandId: number]: VehicleType[] };
