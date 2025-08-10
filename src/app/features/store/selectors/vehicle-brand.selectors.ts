@@ -27,17 +27,17 @@ export const selectVehicleBrandError = createSelector(
 export const selectModelsByBrand = (brandId: number) =>
   createSelector(
     selectVehicleBrandState,
-    (state: VehicleBrandState) => state.modelsByBrand[brandId] || [],
+    (state: VehicleBrandState) => state.modelsByBrand[brandId],
   );
-
-export const selectHasModelsByBrand = (brandId: number) =>
-  createSelector(selectModelsByBrand(brandId), models => !!models && models.length > 0);
 
 export const selectTypesByBrand = (brandId: number) =>
   createSelector(
     selectVehicleBrandState,
-    (state: VehicleBrandState) => state.vehicleTypesByBrand[brandId] || [],
+    (state: VehicleBrandState) => state.vehicleTypesByBrand[brandId],
   );
 
-export const selectHasTypesByBrand = (brandId: number) =>
-  createSelector(selectTypesByBrand(brandId), types => !!types && types.length > 0);
+export const selectModelsAndTypesByBrand = (brandId: number) =>
+  createSelector(selectModelsByBrand(brandId), selectTypesByBrand(brandId), (models, types) => ({
+    models,
+    types,
+  }));
