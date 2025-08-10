@@ -30,6 +30,9 @@ export const selectModelsByBrand = (brandId: number) =>
     (state: VehicleBrandState) => state.modelsByBrand[brandId] || [],
   );
 
+export const selectHasModelsByBrand = (brandId: number) =>
+  createSelector(selectModelsByBrand(brandId), models => !!models && models.length > 0);
+
 export const selectTypesByBrand = (brandId: number) =>
   createSelector(
     selectVehicleBrandState,

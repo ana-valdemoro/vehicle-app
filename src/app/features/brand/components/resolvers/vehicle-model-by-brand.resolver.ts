@@ -2,12 +2,12 @@ import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Injectable, inject } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { filter, first, switchMap, take, tap } from 'rxjs/operators';
+import { selectHasModelsByBrand, selectModelsByBrand } from '../../../store/selectors/vehicle-brand.selectors';
 
 import { VehicleModel } from '../../interfaces/vehicle-model';
 import { loadVehicleModelByBrand } from '../../../store/actions/vehicle-brand.actions';
 import { of } from 'rxjs';
 import { routes } from '../../../../shared/enums/routes';
-import { selectModelsByBrand } from '../../../store/selectors/vehicle-brand.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class VehicleModelByBrandResolver implements Resolve<VehicleModel[]> {
@@ -22,12 +22,11 @@ export class VehicleModelByBrandResolver implements Resolve<VehicleModel[]> {
     }
     return this.store.pipe(
       // 1) Lee una vez el estado actual para estos modelos
-      select(selectModelsByBrand(brandId)),
-      take(1),
+      select(selectHasModelsByBrand(brandId)),
 
       // 2) Si no hay nada, dispara la acción
-      tap(models => {
-        if (!models || models.length === 0) {
+      tap(hasModels => {
+        if (!hasModels) {
           this.store.dispatch(loadVehicleModelByBrand({ brandId }));
         }
       }),
