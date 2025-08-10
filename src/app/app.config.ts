@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideStore({ carBrand: vehicleBrandReducer }),
+    provideStore({ vehicleBrand: vehicleBrandReducer }),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),

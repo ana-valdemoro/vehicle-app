@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { VehicleBrandState } from '../reducers/vehicle-brand.reducer';
 
-export const selectVehicleBrandState = createFeatureSelector<VehicleBrandState>('carBrand');
+export const selectVehicleBrandState = createFeatureSelector<VehicleBrandState>('vehicleBrand');
 
 export const selectAllVehicleBrands = createSelector(
   selectVehicleBrandState,
