@@ -5,7 +5,7 @@ import { VehicleModel } from '../../brand/interfaces/vehicle-model';
 import { VehicleType } from '../../brand/interfaces/vehicle-type';
 
 //  ACTIONS IDENTIFIERS
-export const CHANGE_LOADING_VEHICLE_BRAND_ACTION = '[Vehicle brand] Change Loading Vehicle Brand';
+export const CHANGE_LOADING_VEHICLE_BRAND_ACTION = '[Vehicle brand] Change Loading';
 export const LOAD_BRANDS_SUCCESS_ACTION = '[Vehicle brand] Load Vehicle Brands Success';
 export const LOAD_BRANDS_FAILURE_ACTION = '[Vehicle brand] Load Vehicle Brands Failure';
 
