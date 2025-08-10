@@ -7,7 +7,7 @@
   <div class="brand-detail__header">
     <mat-icon class="brand-detail__icon">directions_car</mat-icon>
     <div>
-      <h1 class="brand-detail__title">{{ brand?.name }}</h1>
+      <h1 class="brand-detail__title">{{ (brand$ | async)?.name }}</h1>
       <p class="brand-detail__subtitle">Japan</p>
     </div>
   </div>
@@ -16,11 +16,11 @@
   <div class="brand-detail__section brand-detail__models">
     <mat-card>
       <div class="brand-detail__chips">
-        <mat-chip>{{ models.length }} models</mat-chip>
+        <mat-chip>{{ (models$ | async)?.length }} models</mat-chip>
       </div>
       <mat-card-content>
         <div class="brand-detail__grid">
-          @for (model of models; track model.id) {
+          @for (model of models$ | async; track model.id) {
             <mat-card class="brand-detail__card">
               <mat-card-title>{{ model.name }}</mat-card-title>
               <mat-card-subtitle>Year: 2026</mat-card-subtitle>
@@ -36,11 +36,11 @@
   <div class="brand-detail__section brand-detail__types">
     <mat-card>
       <div class="brand-detail__chips">
-        <mat-chip>{{ types.length }} types</mat-chip>
+        <mat-chip>{{ (types$ | async)?.length }} types</mat-chip>
       </div>
       <mat-card-content>
         <div class="brand-detail__grid">
-          @for (type of types; track type.id) {
+          @for (type of types$ | async; track type.id) {
             <mat-card class="brand-detail__card">
               <mat-card-title>{{ type.name }}</mat-card-title>
             </mat-card>
