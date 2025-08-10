@@ -1,4 +1,4 @@
-export interface ApiResponse<T> {
+export interface VpicApiResponse<T> {
   Results: T;
   Count: number;
   Message: string;
