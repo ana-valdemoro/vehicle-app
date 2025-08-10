@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { BrandsComponent } from './brands.component';
 import { Component } from '@angular/core';
@@ -13,6 +12,7 @@ import { VehicleBrand } from '../../interfaces/vehicle-brand';
 import { provideHttpClient } from '@angular/common/http';
 import { provideLocationMocks } from '@angular/common/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { provideRouter } from '@angular/router';
 import { screen } from '@testing-library/angular';
 import { selectAllVehicleBrands } from '../../../store/selectors/vehicle-brand.selectors';
 import userEvent from '@testing-library/user-event';

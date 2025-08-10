@@ -1,6 +1,6 @@
 import { routes as ROUTES } from './shared/enums/routes';
 import { Routes } from '@angular/router';
-import { brandDetailResolver } from './features/brand/components/resolvers/brand-detail.resolver';
+import { brandDetailResolver } from './features/brand/resolvers/brand-detail.resolver';
 
 export const routes: Routes = [
   { path: '', redirectTo: ROUTES.BRANDS, pathMatch: 'full' },

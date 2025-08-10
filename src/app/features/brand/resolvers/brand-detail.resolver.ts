@@ -3,17 +3,17 @@ import {
   changeLoadingVehicleBrand,
   loadVehicleModelByBrandSuccess,
   loadVehicleTypesByBrandSuccess,
-} from '../../../store/actions/vehicle-brand.actions';
+} from '../../store/actions/vehicle-brand.actions';
 import { finalize, switchMap, take, tap } from 'rxjs/operators';
 import { forkJoin, of } from 'rxjs';
 
-import { BrandService } from '../../services/brand/brand.service';
+import { BrandService } from '../services/brand/brand.service';
 import { Store } from '@ngrx/store';
-import { VehicleModel } from '../../interfaces/vehicle-model';
-import { VehicleType } from '../../interfaces/vehicle-type';
+import { VehicleModel } from '../interfaces/vehicle-model';
+import { VehicleType } from '../interfaces/vehicle-type';
 import { inject } from '@angular/core';
-import { routes } from '../../../../shared/enums/routes';
-import { selectModelsAndTypesByBrand } from '../../../store/selectors/vehicle-brand.selectors';
+import { routes } from '../../../shared/enums/routes';
+import { selectModelsAndTypesByBrand } from '../../store/selectors/vehicle-brand.selectors';
 
 export const brandDetailResolver: ResolveFn<{
   models: VehicleModel[];
