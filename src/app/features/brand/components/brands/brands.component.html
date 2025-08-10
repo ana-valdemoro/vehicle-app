@@ -6,7 +6,7 @@
     <input matInput (change)="onSearchChange($event)"/>
   </mat-form-field>
 
-  <cdk-virtual-scroll-viewport itemSize="50" class="brands__list-viewport">
+  <cdk-virtual-scroll-viewport  data-testid="virtual-scroll-brands" itemSize="50" class="brands__list-viewport">
     <mat-card *cdkVirtualFor="let brand of brands$" class="brands__card" (click)="onSelectBrand(brand)">
       {{ brand.name }}
     </mat-card>
