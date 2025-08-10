@@ -1,8 +1,6 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable, inject } from '@angular/core';
 import {
-  loadVehicleBrand,
-  loadVehicleBrandSuccess,
   loadVehicleModelByBrand,
   loadVehicleModelByBrandSuccess,
   loadVehicleTypesByBrand,
@@ -16,17 +14,6 @@ import { BrandService } from '../../brand/services/brand/brand.service';
 export class VehicleBrandffects {
   private actions$: Actions = inject(Actions);
   private brandService: BrandService = inject(BrandService);
-
-  loadCarBrand$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadVehicleBrand),
-      switchMap(() =>
-        this.brandService
-          .getAllMakes()
-          .pipe(map(vehicleBrands => loadVehicleBrandSuccess({ vehicleBrands }))),
-      ),
-    ),
-  );
 
   loadnVehicleModelByBrand$ = createEffect(() =>
     this.actions$.pipe(

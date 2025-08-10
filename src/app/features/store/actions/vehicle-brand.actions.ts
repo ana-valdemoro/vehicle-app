@@ -5,27 +5,30 @@ import { VehicleModel } from '../../brand/interfaces/vehicle-model';
 import { VehicleType } from '../../brand/interfaces/vehicle-type';
 
 //  ACTIONS IDENTIFIERS
-export const LOAD_ACTION = '[Vehicle brand] Load Vehicle Brands';
-export const LOAD_SUCCESS_ACTION = '[Vehicle brand] Load Vehicle Brands Success';
-export const LOAD_FAILURE_ACTION = '[Vehicle brand] Load Vehicle Brands Failure';
+export const CHANGE_LOADING_VEHICLE_BRAND_ACTION = '[Vehicle brand] Change Loading Vehicle Brand';
+export const LOAD_BRANDS_SUCCESS_ACTION = '[Vehicle brand] Load Vehicle Brands Success';
+export const LOAD_BRANDS_FAILURE_ACTION = '[Vehicle brand] Load Vehicle Brands Failure';
 
 export const LOAD_MODEL_BY_BRAND = '[Vehicle brand] Load Vehicle Model By Brand';
 export const LOAD_MODEL_BY_BRAND_SUCCESS = '[Vehicle brand] Load Vehicle Model By Brand Success';
-export const LOAD_MODEL_BY_BRAND_FAILURE = '[Vehicle brand] Load Vehicle Model By Brand Failure';
+export const LOAD_MODEL_BY_5BRAND_FAILURE = '[Vehicle brand] Load Vehicle Model By Brand Failure';
 
 export const LOAD_VEHICLE_TYPES_BY_BRAND = '[Vehicle brand] Load Vehicle Types By Brand';
 export const LOAD_VEHICLE_TYPES_BY_BRAND_SUCCESS =
   '[Vehicle brand] Load Vehicle Types By Brand Success';
 
 //  ACTIONS CREATORS
-export const loadVehicleBrand = createAction(LOAD_ACTION);
 export const loadVehicleBrandSuccess = createAction(
-  LOAD_SUCCESS_ACTION,
+  LOAD_BRANDS_SUCCESS_ACTION,
   props<{ vehicleBrands: VehicleBrand[] }>(),
 );
 export const loadVehicleBrandFailure = createAction(
-  LOAD_FAILURE_ACTION,
+  LOAD_BRANDS_FAILURE_ACTION,
   props<{ error: unknown }>(),
+);
+export const changeLoadingVehicleBrand = createAction(
+  CHANGE_LOADING_VEHICLE_BRAND_ACTION,
+  props<{ loading: boolean }>(),
 );
 
 export const loadVehicleModelByBrand = createAction(
