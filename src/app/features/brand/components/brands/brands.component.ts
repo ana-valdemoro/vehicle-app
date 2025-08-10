@@ -1,8 +1,8 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { Observable, combineLatest, map, startWith } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { CommonModule } from '@angular/common';
 import { MatCard } from '@angular/material/card';
@@ -35,25 +35,35 @@ import { selectAllVehicleBrands } from '../../../store/selectors/vehicle-brand.s
 })
 export class BrandsComponent {
   private store = inject(Store);
-  private router: Router = inject(Router);
+  private router = inject(Router);
   allBrands$: Observable<VehicleBrand[]> = this.store.select(selectAllVehicleBrands);
-  searchControl = new FormControl('');
-  brands$ = combineLatest([
-    this.allBrands$,
-    this.searchControl.valueChanges.pipe(startWith('')),
-  ]).pipe(
-    map(([brands, search]) =>
-      brands.filter(brand => {
-        if (search === null || search === undefined || search.trim() === '') {
-          return true;
-        }
-
-        return brand.name.toLowerCase().includes(search.toLowerCase());
-      }),
-    ),
-  );
+  searchTerm: string = '';
+  brands$: Observable<VehicleBrand[]> = this.filterBrands();
 
   onSelectBrand(brand: VehicleBrand): void {
     this.router.navigate([`/${routes.BRANDS}`, brand.id]);
+  }
+
+  onSearchChange(event: Event): void {
+    this.searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    this.brands$ = this.filterBrands();
+  }
+
+  filterBrands() {
+    return this.allBrands$.pipe(
+      map(brands =>
+        brands.filter(brand => {
+          if (
+            this.searchTerm === null ||
+            this.searchTerm === undefined ||
+            this.searchTerm.trim() === ''
+          ) {
+            return true;
+          }
+
+          return brand.name.toLowerCase().includes(this.searchTerm);
+        }),
+      ),
+    );
   }
 }

@@ -3,7 +3,7 @@
 
   <mat-form-field class="brands__search-field" appearance="outline">
     <mat-label>Search brands</mat-label>
-    <input matInput [formControl]="searchControl"/>
+    <input matInput (change)="onSearchChange($event)"/>
   </mat-form-field>
 
   <cdk-virtual-scroll-viewport itemSize="50" class="brands__list-viewport">
