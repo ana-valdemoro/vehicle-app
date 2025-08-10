@@ -23,7 +23,6 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
-    "@ngrx/effects": "^17.2.0",
     "@ngrx/store": "^17.2.0",
     "@testing-library/angular": "^17.4.0",
     "@testing-library/dom": "^10.4.1",
