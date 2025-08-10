@@ -1,27 +1,41 @@
 # VehicleApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
 
-## Development server
+This is an Angular Single Page Application that displays vehicle information using the [NHTSA Vehicle API](https://vpic.nhtsa.dot.gov/api).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Features include:  
+- Virtual scroll for a smooth browsing experience of vehicle brands.  
+- Search functionality to filter brands.  
+- Detailed view per brand showing vehicle types and available models.
 
-## Code scaffolding
+The app uses dynamic routing and async API calls to deliver up-to-date data efficiently.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Stack
+  
+• Angular 17  
+• NgRx  
+• Angular Material  
+• Rxjs  
+• Angular-testing-library  
+• Jest  
+• Jest-dom  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Setup guide
 
-## Running unit tests
+1. Clone this respository with the command: `git clone https://github.com/ana-valdemoro/vehicle-app.git`
+2. From the command line, install all project dependencies with: `npm i`
+3. Start the application with  `npm run start`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Test
 
-## Running end-to-end tests
+It only has been posible to add a few tests to `BrandsComponent` and  `BrandService`
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run tests from the command line with:  `npm run test`.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Future improvements
+
+• Add more tests for other components (e.g., `BrandDetailComponent`), store, reducers, and the `AppComponent`.  
+• Creation of a isolated module for the brands feature
+
