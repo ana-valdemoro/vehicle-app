@@ -15,8 +15,8 @@ export interface VehicleBrandState {
   loading: boolean;
   error: unknown | null;
   vehicleBrands: VehicleBrand[];
-  modelsByBrand: { [brandId: number]: VehicleModel[] };
-  vehicleTypesByBrand: { [brandId: number]: VehicleType[] };
+  modelsByBrand: { [brandId: number]: VehicleModel[] | undefined | null };
+  vehicleTypesByBrand: { [brandId: number]: VehicleType[] | undefined | null };
 }
 
 export const initialState: VehicleBrandState = {
