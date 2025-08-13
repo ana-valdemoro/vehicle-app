@@ -37,5 +37,7 @@ Run tests from the command line with:  `npm run test`.
 ## Future improvements
 
 • Add more tests for other components (e.g., `BrandDetailComponent`), store, reducers, and the `AppComponent`.  
-• Creation of a isolated module for the brands feature
+• Creation of a isolated module for the brands feature  
+• Authentication
+
 
